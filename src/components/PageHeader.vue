@@ -13,6 +13,10 @@ export default defineComponent({
       type: Object as PropType<Calendar | null>,
       default: null,
     },
+    totalCredits: {
+      type: Number,
+      default: 0,
+    },
   },
   emits: ["click"],
   setup: (_, { emit }) => {
@@ -45,6 +49,7 @@ export default defineComponent({
           {{ calendar.month }}/{{ calendar.day }} ({{ calendar.week }})
         </p>
         <p class="header__schedule">{{ calendar.schedule }}</p>
+        <p>{{ totalCredits }} 単位</p>
       </div>
       <div class="header__right-button" v-else>
         <slot name="right-button-icon"></slot>

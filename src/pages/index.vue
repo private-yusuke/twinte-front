@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <PageHeader :calendar="calendar" atHome>
+    <PageHeader :calendar="calendar" :totalCredits="totalCredits" atHome>
       <template #left-button-icon>
         <IconButton
           @click="toggleSidebar"
@@ -241,6 +241,7 @@ import { useBachelorMode } from "~/usecases/useBachelorMode";
 import { useDisplayedModule } from "~/usecases/useDisplayedModule";
 import { getSaturdayCourseList } from "~/usecases/getSaturdayCourseList";
 import { useTableTimeMode } from "~/usecases/useTableTime";
+import { getTotalCredits } from "~/usecases/getTotalCredits";
 
 export default defineComponent({
   name: "Table",
@@ -351,6 +352,9 @@ export default defineComponent({
       duplicationState.value = initialDuplicationState;
     };
 
+    /** total credits */
+    const totalCredits = computed(() => getTotalCredits(storedCourses));
+
     return {
       toggleSidebar,
       weekdays,
@@ -376,6 +380,7 @@ export default defineComponent({
       onClickCourseTile,
       duplicationState,
       clearDuplicationState,
+      totalCredits,
     };
   },
 });
